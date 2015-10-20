@@ -3,8 +3,8 @@
 
 #include <algorithm>
 
-#include "../include/utils.h"
-#include "../include/process.h"
+#include "utils.h"
+#include "GenericProcess.h"
 
 #define IBE 1
 #define ISCE 3
@@ -25,7 +25,7 @@
 /**
  * @brief Computes the matrix element for a CE \f$\gamma\mathbb{P}\rightarrow \rho,\omega,\phi,J/\psi,\Upsilon,\ldots\rightarrow\ell^+\ell^-\f$ process
  */
-class GamPomVMLL : public Process
+class GamPomVMLL : public GenericProcess
 {
  public:
   GamPomVMLL();
