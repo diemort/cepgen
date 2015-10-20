@@ -1,3 +1,3 @@
-#include "gamgamll.h"
-#include "gampomvmll.h"
-#include "test.h"
+#include "GamGamLL.h"
+//#include "GamPomVMLL.h"
+#include "TestProcess.h"
