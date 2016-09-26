@@ -1,7 +1,7 @@
 #ifndef OutputHandler_HepMCHandler_h
 #define OutputHandler_HepMCHandler_h
 
-#include "../include/Event.h"
+#include "../core/Event.h"
 
 #include "HepMC/Version.h"
 
