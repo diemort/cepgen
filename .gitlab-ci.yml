@@ -1,6 +1,5 @@
 cepgen:
   script:
-    - cd cepgen
     - mkdir build
     - cd build
     - cmake ..
