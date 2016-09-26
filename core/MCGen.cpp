@@ -116,7 +116,7 @@ double f(double* x_, size_t ndim_, void* params_)
 {
   double ff;
   Parameters *p;
-  Timer tmr;
+  //Timer tmr;
   bool hadronised;
   double num_hadr_trials;
   std::ostringstream os;
@@ -132,7 +132,7 @@ double f(double* x_, size_t ndim_, void* params_)
     DebuggingInsideLoop(Form("Computing dim-%d point ( %s)", ndim_, os.str().c_str()));
   }
 
-  tmr.reset();
+  //tmr.reset();
 
   //FIXME at some point introduce non head-on colliding beams ?
 
@@ -186,7 +186,7 @@ double f(double* x_, size_t ndim_, void* params_)
   
   if (p->store) { // MC events generation
     p->process->FillKinematics(false);
-    p->process->GetEvent()->time_generation = tmr.elapsed();
+    //p->process->GetEvent()->time_generation = tmr.elapsed();
 
     if (p->hadroniser and p->process_mode!=Kinematics::ElasticElastic) {
       
@@ -212,7 +212,7 @@ double f(double* x_, size_t ndim_, void* params_)
       Debugging(Form("Event after calling the hadroniser (%s)", p->hadroniser->GetName().c_str()));
       if (Logger::GetInstance()->Level>=Logger::Debug) p->process->GetEvent()->Dump();
     }
-    p->process->GetEvent()->time_total = tmr.elapsed();
+    //p->process->GetEvent()->time_total = tmr.elapsed();
     
     Debugging(Form("Generation time:       %5.6f sec\n\t"
                    "Total time (gen+hadr): %5.6f sec",
