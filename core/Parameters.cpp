@@ -3,7 +3,7 @@
 Parameters::Parameters() :
   process( 0 ), process_mode( Kinematics::ElasticElastic ),
   remnant_mode( GenericProcess::SuriYennie ),
-  in1p( 3500. ), in2p( 3500. ),
+  in1p( 6500. ), in2p( 6500. ),
   in1pdg( Particle::Proton ), in2pdg( Particle::Proton ),
   pair( Particle::Muon ),
   mcut( Kinematics::BothLeptons ),
@@ -33,12 +33,12 @@ Parameters::~Parameters()
 
 void Parameters::SetThetaRange( float thetamin_, float thetamax_ )
 {
-  this->mineta = -log(tan(thetamax_/180.*Constants::Pi/2.));
-  this->maxeta = -log(tan(thetamin_/180.*Constants::Pi/2.));
+  this->mineta = -log( tan( thetamax_/180.*Constants::Pi/2. ) );
+  this->maxeta = -log( tan( thetamin_/180.*Constants::Pi/2. ) );
 
-  Debugging(Form("eta(min) = %5.2f => theta(min) = %5.2f"
-                 "eta(max) = %5.2f => theta(max) = %5.2f",
-                 mineta, thetamin_, maxeta, thetamax_));
+  Debugging( Form( "eta(min) = %5.2f => theta(min) = %5.2f"
+                   "eta(max) = %5.2f => theta(max) = %5.2f",
+                   mineta, thetamin_, maxeta, thetamax_ ) );
 }
 
 void Parameters::Dump()
@@ -91,7 +91,7 @@ void Parameters::Dump()
     << std::endl
     << std::setfill( '-' ) << std::setw( wb-2 ) << boldify( " Incoming partons " ) << std::setfill( ' ' ) << std::endl
     << std::endl
-    << std::setw( wt ) << "Virtuality in range" << boldify( Form( "%.1f < -t < %.1f", minq2, maxq2 ).c_str() ) << " GeV**2" << std::endl
+    << std::setw( wt ) << "Virtuality in range" << boldify( Form( "%.1f < -t < %.1e", minq2, maxq2 ).c_str() ) << " GeV**2" << std::endl
     << std::endl
     << std::setfill( '-' ) << std::setw( wb-2 ) << boldify( " Outgoing leptons " ) << std::setfill( ' ' ) << std::endl
     << std::endl
@@ -110,7 +110,7 @@ void Parameters::Dump()
   if (hadroniser)
     os << std::setw( wt ) << "Hadronisation algorithm" << boldify( hadroniser->GetName().c_str() ) << std::endl;
   os << std::setw( wt ) << "Mass range" << boldify( Form( "%.2f < M(x/y) < %.2f", minmx, maxmx ).c_str() ) << " GeV/c**2" << std::endl;
-  Information(os.str());
+  Information( os.str() );
 }
 
 bool Parameters::ReadConfigFile(const char* inFile_)
@@ -118,11 +118,11 @@ bool Parameters::ReadConfigFile(const char* inFile_)
   std::ifstream f;
   std::string key, value;
   f.open(inFile_, std::fstream::in);
-  if (!f.is_open()) {
+  if ( !f.is_open() ) {
     return false;
   }
 
-  Debugging(Form("File '%s' succesfully opened!", inFile_));
+  Debugging( Form( "File '%s' succesfully opened!", inFile_ ) );
   std::ostringstream os;
   os << "Configuration file content : " << "\n\t";
 
@@ -230,7 +230,7 @@ bool Parameters::ReadConfigFile(const char* inFile_)
     }
     else if (key=="THMX") {
       //this->maxtheta = (double)atof( value.c_str() );
-      //this->SetThetaRange(0., (double)atof( value.c_str() )); //FIXME FIXME
+      //this->SetThetaRange(0., (double)atof( value.c_str() ) ); //FIXME FIXME
       os << " * Maximal polar production angle for the leptons" << EtaToTheta(maxeta) << "\n\t";
     }
     else if (key=="ETMN") {
@@ -270,7 +270,7 @@ bool Parameters::ReadConfigFile(const char* inFile_)
       os << " * QPDF: " << this->qpdf << "\n\t";
     }
     else {
-      Information(Form("<WARNING> Unrecognized argument : [%s] = %s", key.c_str(), value.c_str()));
+      InWarning( Form( "Unrecognized argument : [%s] = %s", key.c_str(), value.c_str() ) );
     }
   }
   f.close();
