@@ -1,12 +1,12 @@
 #ifndef Parameters_h
 #define Parameters_h
 
-#include <iostream>
 #include <iomanip>
 #include <cstdlib>
 #include <cmath>
 #include <fstream>
 #include <string>
+#include <memory>
 
 #include "CepGen/Processes/GamGamLL.h"
 
@@ -40,7 +40,7 @@ namespace CepGen
       //----- process to compute
 
       /// Process for which the cross-section will be computed and the events will be generated
-      Process::GenericProcess* process;
+      std::unique_ptr<Process::GenericProcess> process;
       /// Type of outgoing state to consider for the incoming primary particles
       Kinematics::ProcessMode process_mode;
 
@@ -130,7 +130,7 @@ namespace CepGen
       //----- hadronisation
 
       /// Hadronisation algorithm to use for the proton(s) fragmentation
-      Hadroniser::GenericHadroniser* hadroniser;
+      std::unique_ptr<Hadroniser::GenericHadroniser> hadroniser;
       /// Maximal number of trials for the hadronisation of the proton(s) remnants
       unsigned int hadroniser_max_trials;
   };
