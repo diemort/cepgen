@@ -16,16 +16,15 @@ namespace CepGen
 {
   namespace Cards
   {
-    enum Type { LPAIR };
+    enum Type { Lpair, Tcl };
 
     template<Type T>
     class Handler
     {
       public:
         Handler( const char* file );
-        ~Handler();
+        ~Handler() {}
 
-        void parse( const char* file ) {}
         void store( const char* file ) {}
         Parameters& parameters() { return params_; }
 
@@ -33,7 +32,7 @@ namespace CepGen
         Parameters params_;
     };
 
-    typedef Handler<LPAIR> LpairReader;
+    typedef Handler<Lpair> LpairReader;
   }
 }
 
