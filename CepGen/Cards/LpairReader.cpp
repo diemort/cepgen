@@ -31,10 +31,6 @@ namespace CepGen
       if      ( proc_name_ == "lpair" )  params_.setProcess( new Process::GamGamLL() );
       else FatalError( Form( "Unrecognised process name: %s", proc_name_.c_str() ) );
 
-#ifdef PYTHIA6
-      if ( hadr_name_ == "pythia6" ) params_.setHadroniser( new Hadroniser::Pythia6Hadroniser );
-#endif
-
       if ( m_params.count( "IEND" ) ) setValue<bool>( "IEND", ( std::stoi( m_params["IEND"] ) > 1 ) );
       Information( os.str() );
     }
@@ -43,7 +39,6 @@ namespace CepGen
     LpairReader::init( Parameters* params )
     {
       registerParameter<std::string>( "PROC", "Process name to simulate", &proc_name_ );
-      registerParameter<std::string>( "HADR", "Hadronisation algorithm to use", &hadr_name_ );
 
       registerParameter<bool>( "IEND", "Generation type", &params->generation.enabled );
 
