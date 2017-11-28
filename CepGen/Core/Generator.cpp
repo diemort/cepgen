@@ -1,4 +1,5 @@
 #include "CepGen/Generator.h"
+#include "CepGen/Version.h"
 
 namespace CepGen
 {
@@ -40,7 +41,7 @@ namespace CepGen
   Generator::printHeader()
   {
     std::string tmp;
-    std::ostringstream os; os << std::endl;
+    std::ostringstream os; os << "version " << version() << std::endl;
     std::ifstream hf( "README" );
     if ( !hf.good() ) throw Exception( __PRETTY_FUNCTION__, "Failed to open README file", JustWarning );
     while ( true ) {
