@@ -23,16 +23,8 @@ add_subdirectory(External)
 
 #----- include external paths
 
+set(CEPGEN_EXTERNAL_REQS "")
 include(UseEnvironment)
-set(CEPGEN_EXTERNAL_REQS ${GSL_LIB} ${GSL_CBLAS_LIB} ${CEPGEN_LIBRARIES})
-if(MUPARSER)
-  message(STATUS "muParser found in ${MUPARSER}")
-  list(APPEND CEPGEN_EXTERNAL_REQS ${MUPARSER})
-endif()
-if(LIBCONFIG)
-  message(STATUS "libconfig++ found in ${LIBCONFIG}")
-  list(APPEND CEPGEN_EXTERNAL_REQS ${LIBCONFIG})
-endif()
 
 #----- build all the intermediate objects
 

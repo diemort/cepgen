@@ -66,7 +66,6 @@ namespace CepGen
         out.VTIMUP[ip] = 0.; // invariant lifetime
         out.SPINUP[ip] = 0.;
       }
-      lhe_output_->eventComments() << "haha";
       lhe_output_->hepeup = out;
       lhe_output_->writeEvent();
     }
